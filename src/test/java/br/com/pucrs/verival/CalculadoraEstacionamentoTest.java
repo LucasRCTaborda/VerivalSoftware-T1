@@ -54,7 +54,7 @@ public class CalculadoraEstacionamentoTest {
         );
     }
 
-    @ParameterizedTest(name = "CA {index + 7}: entrada={0}, saída={1}, VIP={2} → R$ {3}")
+    @ParameterizedTest(name = "CA {index}: entrada={0}, saída={1}, VIP={2} → R$ {3}")
     @MethodSource("fornecerCasosDeTeste")
     void testarCalculoTarifa(LocalDateTime entrada, LocalDateTime saida, boolean vip, double tarifaEsperada) {
         CalculadoraEstacionamento calc = new CalculadoraEstacionamento();
