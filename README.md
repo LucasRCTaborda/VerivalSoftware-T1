@@ -4,8 +4,8 @@
 
 | Camada        | Tecnologia                    |
 |---------------|-------------------------------|
-| Linguagem     | Java 17                       |
-| Framework     | Spring Boot 3.3.4             |
+| Linguagem     | Java 25 (LTS)                 |
+| Framework     | Spring Boot 3.5.16            |
 | Build         | Maven                         |
 | Banco (dev)   | H2 (em memória)               |
 | Testes        | JUnit 5 + Mockito + AssertJ   |
@@ -41,6 +41,8 @@ mvn spring-boot:run
 ```
 
 A aplicação estará disponível em `http://localhost:8080`.
+
+> Requisito: JDK 25 ou superior compatível com o release 25.
 
 ## 📊 Relatório de Cobertura (JaCoCo)
 
@@ -95,4 +97,3 @@ Defeito 3 — Horas adicionais truncadas em vez de arredondadas para cima
 Falha observada: Ao calcular horas adicionais além da primeira hora, o sistema usava divisão inteira (truncamento), fazendo com que frações de hora fossem ignoradas. Exemplo: 61 minutos = 1 min adicional → truncado para 0 horas adicionais → cobrava apenas R$ 15,00 em vez de R$ 20,00 (R$ 15,00 + R$ 5,00 por 1 hora adicional arredondada).
 Caso de teste que detectou: CA 13 — teste parametrizado `testarCalculoTarifa` com entrada às 10:00 e saída às 11:01 (61 min). Esperado: R$ 20,00. Obtido com truncamento: R$ 15,00.
 Correção aplicada: Substituir a divisão inteira `(minutos - 60) / 60` por `Math.ceil((minutos - 60) / 60.0)`, garantindo que qualquer fração de hora adicional seja arredondada para cima, conforme a regra de negócio.
-
