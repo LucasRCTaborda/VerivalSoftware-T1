@@ -100,6 +100,12 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.16</version>
+                <configuration>
+                    <!-- a classe main do spring so sobe a aplicacao, nao tem regra de negocio -->
+                    <excludes>
+                        <exclude>br/com/pucrs/verival/VerivalApplication.class</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
