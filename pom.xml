@@ -122,6 +122,38 @@
                 </executions>
             </plugin>
 
+            <!-- PIT - Teste de Mutacao -->
+            <!-- rodar com: mvn test-compile org.pitest:pitest-maven:mutationCoverage -->
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.30.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>1.2.3</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetClasses>
+                        <param>br.com.pucrs.verival.CalculadoraEstacionamento</param>
+                    </targetClasses>
+                    <!-- o teste do contexto do spring nao testa a calculadora, so deixa lento -->
+                    <targetTests>
+                        <param>br.com.pucrs.verival.CalculadoraEstacionamento*</param>
+                    </targetTests>
+                    <mutators>
+                        <mutator>STRONGER</mutator>
+                    </mutators>
+                    <outputFormats>
+                        <format>HTML</format>
+                        <format>XML</format>
+                    </outputFormats>
+                    <timestampedReports>false</timestampedReports>
+                </configuration>
+            </plugin>
+
             <!-- Surefire - Executor de Testes -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
